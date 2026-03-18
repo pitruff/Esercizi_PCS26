@@ -1,0 +1,24 @@
+Prima di tutto mi preme spiegare come sono arrivato alla mia rappresentazione 
+grafica della memoria e cosa sono gli altri file presenti in questa cartella.
+
+Nel provare a stampare gli indirizzi degli elementi degli array ho scritto il
+programma che si trova nella foto "programma_indirizzi" il cui output conseguente 
+è stato "output_indirizzi". Da qui, sapendo che i valori int e float occupano 4
+byte di memoria e che i double ne occupano 8, ho capito che le variabili introdotte 
+sono state salvate consecutivamente nella memoria, con l'ordine che si vede in 
+"rappresentazione_grafica_memoria". In particolare è stata salvata la variabile
+"y", poi "x" all'indirizzo subito successivo, quindi l'array "ai", "af" e infine "ad".
+
+Per quanto riguarda l'output di 0 invece, il motivo per cui avviene è la riga 12:
+									(&y)[1] = 0;
+L'unary & a sinistra di y ci dà l'indirizzo di y (che come abbiamo visto è stata 
+immagazzinata subito prima di x), la [1] fa avanzare di una posizione il puntatore 
+(che però è un comando intelligente quindi avanza di 4 byte, andando all'oggetto 
+successivo) arrivando quindi alla x, che poniamo uguale a 0. E' come se trattassi y 
+come un array, e dal valore y[0] volessi andare al successivo y[1], solo che y è 
+una variabile float e al posto di y[1] c'è x. Questa riga di codice quindi sta 
+dicendo x = 0. E' per questo che nel momento in cui andiamo a stampare x il risultato 
+sarà 0.
+
+
+
