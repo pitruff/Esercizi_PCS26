@@ -1,0 +1,12 @@
+1)Confronto tra algoritmi quadratici e logaritmici [measure_sorts.cpp]:
+
+Nel cmake di default l'insertionSort prevale fino alla dimensione 40-44, mentre in modalità DEBUG solo fino alla 36-38. Dopodichè a dominare è in entrambi casi il QuickSort, coerentemete con il fatto che sia un algoritmo ottimale.
+
+In modalità RELEASE, invece, vince sempre l'insertionSort, che risulta il più veloce in tutte le dimensioni testate. Questo avviene per via degli ottimizzatori usati dal cmake in questa modalità che evidentemente penalizzano gli algoritmi ricorsivi.
+
+
+2)Confronto tra QuickSort modificato (chiamato "BestSort", sfrutta insertionSort quando tratta vettori di dimensione minore di 44 ma con la struttura generale del quicksort) e std::sort(). [measure_sorts2.cpp].
+
+Il nostro algoritmo ibrido è sempre più veloce di quello della libreria standard. L'unica eccezione avviene tra la dimensione 6 e la 16 della modalità RELEASE, intervallo in cui sembra prevalere std::sort() 
+
+Il mergesort e il QuickSort li avevamo confrontati con std::sort()  già nel test precedente. I risultati erano che il quicksort era sempre più veloce di std::sort(), a parte in modalità RELEASE, dove vince quasi sempre std::sort(). Per quanto riguarda il MergeSort, invece, era sempre più lento di std::sort(), in tutte e 3 le modalità.
