@@ -1,15 +1,17 @@
 #pragma once //per non includere due volte la stessa classe
 #include <iostream>
 
+
+template<typename T>
 class unidirected_edge{
 	
-	int nodo_partenza;
-	int nodo_arrivo;
+	T nodo_partenza;
+	T nodo_arrivo;
 	
 public:
 
 	//costruttore user-defined
-	unidirected_edge(const int& a, const int& b){
+	unidirected_edge(const T& a, const T& b){
 		if(a<=b){
 			nodo_partenza=a;
 			nodo_arrivo=b;
@@ -22,8 +24,8 @@ public:
 	}
 	//metodi per restituire i nodi
 
-	int from() const {return nodo_partenza;}
-	int to() const {return nodo_arrivo;}
+	T from() const {return nodo_partenza;}
+	T to() const {return nodo_arrivo;}
 	
 	
 	
@@ -71,7 +73,8 @@ public:
 
 };
 
-std::ostream& operator<<(std::ostream& os, const unidirected_edge& e){
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const unidirected_edge<T>& e){
 		
 	os<<"L'arco va dal nodo "<<e.from()<<" al nodo "<<e.to();
 	return os;

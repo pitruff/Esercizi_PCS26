@@ -3,17 +3,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <set>
-
+#include <string>
 #include "unidirected_graph.hpp"
 #include "unidirected_edge.hpp"
 
 int main(void)
 {
 	
-	unidirected_graph g1;
-	unidirected_edge e12(1,2);
-	unidirected_edge e23(2,3);
-	unidirected_edge e34(3,4);
+	unidirected_graph<int> g1;
+	unidirected_edge<int> e12(1,2);
+	unidirected_edge<int> e23(2,3);
+	unidirected_edge<int> e34(3,4);
+	unidirected_edge<float> ef(3.0,4.2);
+	unidirected_edge<char> ec('a','b');
 	
 	g1.add_edge(e12);
 	g1.add_edge(e23);
@@ -22,7 +24,7 @@ int main(void)
 	
 	//testo il costruttore di copia. Giusto per provare qualcosa controllo se hanno lo stesso numero di archi e se l'arco con l'ID 2 è lo stesso
 	
-	unidirected_graph grafo_copia(g1);
+	unidirected_graph<int> grafo_copia(g1);
 	
 	if (grafo_copia.all_edges().size()!=g1.all_edges().size() or grafo_copia.edge_at(2) != g1.edge_at(2)){
 		
@@ -73,9 +75,9 @@ int main(void)
 	int id2 = g1.edge_number(e23);
 	int id3 = g1.edge_number(e34);
 	
-	unidirected_edge recuperato1=g1.edge_at(id1);
-	unidirected_edge recuperato2=g1.edge_at(id2);
-	unidirected_edge recuperato3=g1.edge_at(id3);
+	unidirected_edge<int> recuperato1=g1.edge_at(id1);
+	unidirected_edge<int> recuperato2=g1.edge_at(id2);
+	unidirected_edge<int> recuperato3=g1.edge_at(id3);
 	
 	if(recuperato1!=e12 or recuperato2!=e23 or recuperato3!=e34){
 
@@ -86,10 +88,10 @@ int main(void)
 	//testiamo la differenza tra grafi
 	//costruiamo un secondo grafo che contiene solo l'arco e23
 	
-	unidirected_graph g2;
+	unidirected_graph<int> g2;
 	g2.add_edge(e23);
 	
-	unidirected_graph diff= g1-g2;
+	unidirected_graph<int> diff= g1-g2;
 	
 	//verifichiamo prima la dimensione di diff
 	

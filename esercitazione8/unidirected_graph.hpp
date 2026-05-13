@@ -6,22 +6,23 @@
 #include <vector>
 #include "unidirected_edge.hpp"
 
+template<typename T>
 class  unidirected_graph{
 	
 	//Voglio creare tre oggetti per facilitarmi la vita quando implementerò i metodi
 	
 	//La lista di adiacenza per i nodi
-	//uso set e non int per non aggiungere due volte l'arco vicino
-	std::map<int, std::set<int>> adiacenze;
+	//uso set e non list per non aggiungere due volte l'arco vicino
+	std::map<T, std::set<T>> adiacenze;
 
 	//una mappa di archi a cui associo il loro numero, che sarà la loro posizione nel grafo;
 	
-	std::map<unidirected_edge, int> arco_id;
+	std::map<unidirected_edge<T>, int> arco_id;
 	
 	
 	//un vettore di archi che ordinerò con le operazioni di comparazione implementate in unidirected_edge
 	
-	std::vector<unidirected_edge> archi;
+	std::vector<unidirected_edge<T>> archi;
 	
 public:
 	
@@ -36,7 +37,7 @@ public:
 	
 	//costruttore copia
 	
-	unidirected_graph(const unidirected_graph& other){
+	unidirected_graph(const unidirected_graph<T>& other){
 		
 		adiacenze=other.adiacenze;
 		arco_id=other.arco_id;
@@ -47,7 +48,7 @@ public:
 	
 	//metodo per restituire i vicini
 	
-	std::set<int> neighbours(int nodo) const{
+	std::set<T> neighbours(T nodo) const{
 		
 		//Non posso usare "[]" perchè se cerco un nodo che non è nella mappa me lo aggiunge
 		
@@ -58,7 +59,7 @@ public:
 		}
 		
 		else{
-			return std::set<int>();
+			return std::set<T>();
 		}
 		
 	}
@@ -66,7 +67,7 @@ public:
 	
 	//metodo per aggiungere un arco al grafo
 	
-	void add_edge(const unidirected_edge& new_arco) {
+	void add_edge(const unidirected_edge<T>& new_arco) {
 		
 		//controllo che non ci sia già il nuovo arco
 		if (arco_id.find(new_arco) != arco_id.end()){
@@ -87,15 +88,15 @@ public:
 	//metodo che restituisce tutti gli archi
 	
 	
-	std::vector<unidirected_edge> all_edges() const{
+	std::vector<unidirected_edge<T>> all_edges() const{
 		return archi;
 	}
 	
 	//metodo che restituisce tutti i nodi
 	
-	std::vector<int> all_nodes() const{
+	std::vector<T> all_nodes() const{
 		
-		std::vector<int> v;
+		std::vector<T> v;
 		for(const auto& pair : adiacenze){
 			v.push_back(pair.first);
 		}
@@ -107,7 +108,7 @@ public:
 	//metodo che, dato un arco, ne restituisce la numerazione all'interno del grafo
 	
 	
-	int edge_number(const unidirected_edge& e) const{
+	int edge_number(const unidirected_edge<T>& e) const{
 		
 		return arco_id.at(e);
 		
@@ -115,7 +116,7 @@ public:
 	
 	//metodo che, dato un numero d’arco, restituisce il corrispondente oggetto arco all’interno del grafo
 	
-	unidirected_edge edge_at(int n) const{
+	unidirected_edge<T> edge_at(int n) const{
 		
 		return archi[n];
 		
@@ -124,7 +125,7 @@ public:
 	
 	//implemento differenza tra grafi
 	
-	unidirected_graph operator-(const unidirected_graph& other) const{
+	unidirected_graph<T> operator-(const unidirected_graph<T>& other) const{
 		
 		unidirected_graph new_graph;
 		
