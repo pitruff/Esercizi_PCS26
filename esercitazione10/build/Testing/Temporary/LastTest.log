@@ -1,0 +1,18 @@
+Start testing: May 25 17:21 UTC
+----------------------------------------------------------
+1/1 Testing: prova_GC
+1/1 Test: prova_GC
+Command: "/home/pcsdocker/Data/Esercizi_PCS26/esercitazione10/build/gradiente_coniugato"
+Directory: /home/pcsdocker/Data/Esercizi_PCS26/esercitazione10/build
+"prova_GC" start time: May 25 17:21 UTC
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"prova_GC" end time: May 25 17:21 UTC
+"prova_GC" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 25 17:21 UTC
